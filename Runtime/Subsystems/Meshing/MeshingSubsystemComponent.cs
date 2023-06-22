@@ -670,7 +670,7 @@ namespace UnityEngine.XR.MagicLeap
         {
             MeshingSubsystem.Extensions.MLMeshing.Config.SetBounds(transform, boundsExtents);
             transform.hasChanged = false;
-            Debug.Log("[Meshing] Subsystem: Update Bounds: " + transform.position, this);
+            // Debug.Log("[Meshing] Subsystem: Update Bounds: " + transform.position, this);
         }
 
         void UpdateBatchSize()
