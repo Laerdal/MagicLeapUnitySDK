@@ -274,7 +274,7 @@ namespace UnityEngine.XR.MagicLeap
 
                     public static IntPtr AcquireConfidence(MeshId meshId, out int count) => NativeBindings.MeshingAcquireConfidence(meshId, out count);
                     public static void ReleaseConfidence(MeshId meshId) => NativeBindings.MeshingReleaseConfidence(meshId);
-                    public static void SetBounds(Transform transform, Vector3 extents) => SetBounds(transform.localPosition, transform.localRotation, extents);
+                    public static void SetBounds(Transform transform, Vector3 extents) => SetBounds(transform.position, transform.rotation, extents);
                     public static void SetBounds(Vector3 position, Quaternion rotation, Vector3 extents) => NativeBindings.MeshingSetBounds(position, rotation, extents);
 
                     public static int batchSize
