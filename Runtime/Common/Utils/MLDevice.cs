@@ -8,14 +8,17 @@
 // ---------------------------------------------------------------------
 // %BANNER_END%
 
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.XR.MagicLeap.Native;
+using UnityEngine.XR.Management;
+#if UNITY_OPENXR_1_9_0_OR_NEWER
+using UnityEngine.XR.OpenXR;
+using UnityEngine.XR.OpenXR.Features.MagicLeapSupport;
+#endif
 namespace UnityEngine.XR.MagicLeap
 {
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using UnityEditor;
-    using UnityEngine.XR.MagicLeap.Native;
-
     /// <summary>
     /// MagicLeap device class responsible for updating all trackers when they register and are enabled.
     /// </summary>
@@ -163,6 +166,12 @@ namespace UnityEngine.XR.MagicLeap
 
         private int mainThreadId = -1;
 
+        private Camera unityCamera;
+
+#if UNITY_OPENXR_1_9_0_OR_NEWER
+        private MagicLeapFeature mlOpenXrFeature;
+#endif
+
         /// <summary>
         /// Gets the platform API level that the OS supports.
         /// </summary>
@@ -189,10 +198,21 @@ namespace UnityEngine.XR.MagicLeap
 
         public static int MainThreadId => Instance.mainThreadId;
 
+        public static bool UnityVideoPlayerSupported =>
+#if UNITY_2022_3_10_OR_NEWER
+            true;
+#else
+            false;
+#endif
+
         /// <summary>
         /// Gets the MLDevice singleton instance.
         /// </summary>
-        private static MLDevice Instance => instance;
+        public static MLDevice Instance
+        {
+            get { return instance; }
+            private set { instance = value; }
+        }
 
         /// <summary>
         /// Check if the underlying Unity XR MagicLeap subsystem is initialized.
@@ -205,16 +225,34 @@ namespace UnityEngine.XR.MagicLeap
 
         public static bool IsMagicLeapLoaderActive()
         {
-            return (UnityEngine.XR.Management.XRGeneralSettings.Instance?.Manager?.ActiveLoaderAs<MagicLeapLoader>() != null);
+#if UNITY_XR_MAGICLEAP_PROVIDER
+            if (XRGeneralSettings.Instance != null && XRGeneralSettings.Instance.Manager != null)
+            {
+                return XRGeneralSettings.Instance.Manager.ActiveLoaderAs<MagicLeapLoader>() != null;
+            }
+#endif
+            return false;
         }
 
         public static bool IsOpenXRLoaderActive()
-        {
-#if UNITY_OPENXR_1_4_0_OR_NEWER
-            return  (UnityEngine.XR.Management.XRGeneralSettings.Instance?.Manager?.ActiveLoaderAs<UnityEngine.XR.OpenXR.OpenXRLoader>() != null);
-#else
-            return false;
+        { 
+#if UNITY_OPENXR_1_9_0_OR_NEWER
+            return Utils.TryGetOpenXRLoader(out _);
 #endif
+#pragma warning disable CS0162
+            return false;
+#pragma warning restore CS0162
+        }
+
+        public static bool IsMagicLeapOrOpenXRLoaderActive()
+        {
+            if (XRGeneralSettings.Instance != null && XRGeneralSettings.Instance.Manager != null)
+            {
+                bool isOpenXRLoaderActive = IsOpenXRLoaderActive();
+                bool isXRSDKLoaderActive = IsMagicLeapLoaderActive();
+                return isOpenXRLoaderActive || isXRSDKLoaderActive;
+            }
+            return false;
         }
 
         /// <summary>
@@ -421,6 +459,37 @@ namespace UnityEngine.XR.MagicLeap
         protected void Awake()
         {
             this.mainThreadId = System.Threading.Thread.CurrentThread.ManagedThreadId;
+
+#if UNITY_XR_MAGICLEAP_PROVIDER
+            if (!Application.isEditor)
+            {
+                using var player = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+                using var secureSettings = new AndroidJavaClass("android.provider.Settings$Secure");
+                using var activity = player.GetStatic<AndroidJavaObject>("currentActivity");
+                using var resolver = activity.Call<AndroidJavaObject>("getContentResolver");
+
+                var setting = secureSettings.CallStatic<float>("getFloat", resolver, "clipping_plane_distance", 0f);
+                if (setting != 0f)
+                {
+                    // if we got something other than 0 that means the setting is available and we should disable the cumbersome enforcement in the XR plugin
+                    Rendering.RenderingSettings.enforceNearClip = false;
+                    Debug.Log("System setting clipping_plane_distance found, disabling Unity XR enforcement.");
+                }
+                else
+                {
+                    Rendering.RenderingSettings.enforceNearClip = true;
+                    Debug.LogWarning("System setting clipping_plane_distance could not be found. Unity XR will enforce constant value.");
+                }
+            }
+#endif
+
+#if UNITY_OPENXR_1_9_0_OR_NEWER
+            if (IsOpenXRLoaderActive())
+            {
+                mlOpenXrFeature = OpenXRSettings.Instance.GetFeature<MagicLeapFeature>();
+            }
+#endif
+
         }
 
         /// <summary>

@@ -13,6 +13,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Serialization;
 using UnityEngine.XR.ARSubsystems;
+using UnityEngine.XR.MagicLeap.Native;
 using UnityEngine.XR.Management;
 
 #if UNITY_EDITOR
@@ -25,6 +26,8 @@ namespace UnityEngine.XR.MagicLeap
     [DisallowMultipleComponent]
     public sealed class MeshingSubsystemComponent : MonoBehaviour
     {
+        private const float SubsystemStartUpTime = 1f;
+
         /// <summary>
         /// What type of mesh to generate: a triangle mesh or a point cloud
         /// </summary>
@@ -343,6 +346,8 @@ namespace UnityEngine.XR.MagicLeap
         public event Action<MeshId> meshRemoved;
 
         private InputDevice headDevice;
+        private Coroutine startupRoutine = null;
+        private bool shouldSubsystemBeRunning = false;
 
         /// <summary>
         /// Retrieve the confidence values associated with a mesh. Confidence values
@@ -359,7 +364,7 @@ namespace UnityEngine.XR.MagicLeap
                 throw new ArgumentNullException(nameof(confidenceOut));
             }
 
-            if (m_MeshSubsystem == null)
+            if (MeshingSubsystemLifecycle.MeshSubsystem == null)
             {
                 return false;
             }
@@ -558,33 +563,21 @@ namespace UnityEngine.XR.MagicLeap
 
         IEnumerator Init()
         {
-            while (XRGeneralSettings.Instance == null)
-            {
-                yield return null;
-            }
-            while (XRGeneralSettings.Instance.Manager == null)
-            {
-                yield return null;
-            }
-
+            yield return StartCoroutine(MeshingSubsystemLifecycle.WaitUntilInited());
+            
             while (meshPrefab == null)
             {
                 yield return null;
             }
-
+            
             if (!gameObjectPoolInitialized)
             {
                 while (gameObjectPool.Count < objectPoolSize)
                 {
                     AddNewObjectToPool();
                 }
-
+                
                 gameObjectPoolInitialized = true;
-            }
-            m_Loader = XRGeneralSettings.Instance.Manager.ActiveLoaderAs<MagicLeapLoader>();
-            if (m_Loader != null)
-            {
-                m_MeshSubsystem = m_Loader.meshSubsystem;
             }
 
             UpdateSettings();
@@ -596,20 +589,36 @@ namespace UnityEngine.XR.MagicLeap
 
         void StartSubsystem()
         {
-            if (m_Loader != null)
-            {
-                m_Loader.StartMeshSubsystem();
-            }
+            MeshingSubsystemLifecycle.StartSubsystem();
+
+            startupRoutine = StartCoroutine(LetSubsystemToStart());
+
+            MLSpace.OnLocalizationEvent += MLSpaceOnOnLocalizationChanged;
+        }
+
+        private IEnumerator LetSubsystemToStart()
+        {
+            shouldSubsystemBeRunning = false;
+            yield return new WaitForSeconds(SubsystemStartUpTime);
+            shouldSubsystemBeRunning = true;
+        }
+
+        private void MLSpaceOnOnLocalizationChanged(MLSpace.LocalizationResult result)
+        {
+            m_SettingsDirty = true;
         }
 
         void StopSubsystem()
         {
-            if (m_Loader != null)
-            {
-                m_Loader.StopMeshSubsystem();
-            }
-            m_MeshSubsystem = null;
+            MeshingSubsystemLifecycle.StopSubsystem();
             SubsystemFeatures.SetCurrentFeatureEnabled(Feature.Meshing | Feature.PointCloud, false);
+
+            if (startupRoutine != null)
+            {
+                StopCoroutine(startupRoutine);
+            }
+            
+            MLSpace.OnLocalizationEvent -= MLSpaceOnOnLocalizationChanged;
         }
 
         void OnEnable()
@@ -649,13 +658,14 @@ namespace UnityEngine.XR.MagicLeap
                 }
             }
         }
-
+        
         void UpdateSettings()
         {
             DestroyAllMeshes();
             UpdateBatchSize();
-
+            
             var settings = GetMeshingSettings();
+            
             MeshingSubsystem.Extensions.MLMeshing.Config.meshingSettings = settings;
             MeshingSubsystem.Extensions.MLMeshing.Config.density = density;
 
@@ -694,11 +704,17 @@ namespace UnityEngine.XR.MagicLeap
         // been added to the asynchronous queue, or the queue is full.
         void Update()
         {
+            if (MeshingSubsystemLifecycle.MeshSubsystem == null)
+                return;
 
-            if (m_MeshSubsystem == null)
+            if (!shouldSubsystemBeRunning)
                 return;
-            if (!m_MeshSubsystem.running)
+
+            if (!MeshingSubsystemLifecycle.MeshSubsystem.running)
+            {
+                Debug.LogError($"MeshingSubsystemLifecycle.MeshSubsystem.running {MeshingSubsystemLifecycle.MeshSubsystem.running}");
                 return;
+            }
 #if UNITY_EDITOR
             m_SettingsDirty |= haveSettingsChanged;
 #endif
@@ -716,7 +732,7 @@ namespace UnityEngine.XR.MagicLeap
             // Polling at twice the rate will ensure that data appears at the desired interval.  
             float timeSinceLastUpdate = (float)(DateTime.Now - m_TimeLastUpdated).TotalSeconds;
             bool allowUpdate = (timeSinceLastUpdate > (m_PollingRate / 2.0f));
-            bool gotMeshInfos = m_MeshSubsystem.TryGetMeshInfos(meshInfos);
+            bool gotMeshInfos = MeshingSubsystemLifecycle.MeshSubsystem.TryGetMeshInfos(meshInfos);
             if (allowUpdate && gotMeshInfos)
             {
                 foreach (var meshInfo in meshInfos)
@@ -763,7 +779,7 @@ namespace UnityEngine.XR.MagicLeap
                     var meshCollider = meshGameObject.GetComponent<MeshCollider>();
                     var meshFilter = meshGameObject.GetComponent<MeshFilter>();
                     var meshAttributes = computeNormals ? MeshVertexAttributes.Normals : MeshVertexAttributes.None;
-                    m_MeshSubsystem.GenerateMeshAsync(meshId, meshFilter.mesh, meshCollider, meshAttributes, OnMeshGenerated);
+                    MeshingSubsystemLifecycle.MeshSubsystem.GenerateMeshAsync(meshId, meshFilter.mesh, meshCollider, meshAttributes, OnMeshGenerated);
                     m_MeshesBeingGenerated.Add(meshId, m_MeshesNeedingGeneration[meshId]);
                     if (m_MeshesNeedingGeneration.ContainsKey(meshId))
                     {
@@ -859,6 +875,10 @@ namespace UnityEngine.XR.MagicLeap
                     }
                 }
             }
+            else
+            {
+                m_MeshesBeingGenerated.Remove(result.MeshId);
+            }
         }
 
         bool m_SettingsDirty;
@@ -873,7 +893,9 @@ namespace UnityEngine.XR.MagicLeap
 
         Queue<GameObject> gameObjectPool;
 
+#if UNITY_XR_MAGICLEAP_PROVIDER
         MagicLeapLoader m_Loader;
+#endif
         XRMeshSubsystem m_MeshSubsystem;
     }
 }

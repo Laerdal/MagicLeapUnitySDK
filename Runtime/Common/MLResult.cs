@@ -15,6 +15,9 @@ namespace UnityEngine.XR.MagicLeap
     using System.Runtime.InteropServices;
     using System.Threading.Tasks;
     using UnityEngine.XR.MagicLeap.Native;
+    
+    //Disabling WebRTC deprecated warning 
+    #pragma warning disable 618
 
     /// <summary>
     /// ALWAYS INHERIT FROM THIS
@@ -166,6 +169,11 @@ namespace UnityEngine.XR.MagicLeap
             /// Operation failed because of missing/incompatible license.
             /// </summary>
             LicenseError,
+
+            /// <summary>
+            /// Operation failed because the timestamp parameter was outside the expected range.
+            /// </summary>
+            InvalidTimestamp,
 
             // MLAudioResult
 
@@ -706,6 +714,18 @@ namespace UnityEngine.XR.MagicLeap
             /// </summary>
             SpaceAlreadyExists,
 
+            // Facial Expression
+
+            /// <summary>
+            /// Unable to detect the eyes, check MLHeadsetFitStatus.
+            /// </summary>
+            HeadsetFitIssue = (CodePrefix.MLFacialExpressionResult << 16),
+
+            /// <summary>
+            /// Operation failed because enable_eye_expression in MLFacialExpressionSettings is disabled.
+            /// </summary>
+            EyeExpressionDisabled,
+
             /// <summary>
             /// Indicates the component is not connected.
             /// </summary>
@@ -795,10 +815,12 @@ namespace UnityEngine.XR.MagicLeap
 
             /// <summary>
             /// Code for MLInput related MLResults.
+            /// </summary>
             MLInputResult = 0x21dc,
 
             /// <summary>
             /// Code for MLWebView related MLResults.
+            /// </summary>
             MLWebViewResult = 0xebf7,
 
             /// <summary>
@@ -809,7 +831,12 @@ namespace UnityEngine.XR.MagicLeap
             /// <summary>
             /// Code for MLPowerManager related MLResults.
             /// </summary>
-            MLPowerManager = 0x4c8a
+            MLPowerManager = 0x4c8a,
+
+            /// <summary>
+            /// Code for MLFacialExpression related MLResults.
+            /// </summary>
+            MLFacialExpressionResult = 0x18cd
         }
 
         /// <summary>
@@ -893,11 +920,14 @@ namespace UnityEngine.XR.MagicLeap
                     // No MLWebViewGetResultString in API 
                     codeString = "Web View Result Code - String Not Available";
                     break;
+                case CodePrefix.MLAnchorsResult:
+                    codeString = "MLResult_" + resultCode;
+                    break;
                 case CodePrefix.MLPowerManager:
                     codeString = resultCode.ToString();
                     break;
-                case CodePrefix.MLAnchorsResult:
-                    codeString = "MLResult_" + resultCode;
+                case CodePrefix.MLFacialExpressionResult:
+                    codeString = resultCode.ToString();
                     break;
                 default:
                     // This will catch any unknown/invalid return values.

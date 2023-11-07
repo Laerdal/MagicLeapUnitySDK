@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c2fadf230d1919748a9aa21d40f74619, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: UnityEngine.InputSystem.XR.TrackedPoseDriver, Unity.InputSystem
+  m_EditorClassIdentifier: 
   m_TrackingType: 0
   m_UpdateType: 0
   m_IgnoreTrackingState: 0
@@ -62,8 +62,7 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: 4715436822718277786, guid: a7b3d28b346833f4ea10936be7a9f18c,
-      type: 3}
+    m_Reference: {fileID: 971518578729158012, guid: a7b3d28b346833f4ea10936be7a9f18c, type: 3}
   m_RotationInput:
     m_UseReference: 1
     m_Action:
@@ -75,8 +74,7 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: -3730266099773404857, guid: a7b3d28b346833f4ea10936be7a9f18c,
-      type: 3}
+    m_Reference: {fileID: 2188567022586841978, guid: a7b3d28b346833f4ea10936be7a9f18c, type: 3}
   m_TrackingStateInput:
     m_UseReference: 0
     m_Action:
@@ -119,8 +117,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: caff514de9b15ad48ab85dcff5508221, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: UnityEngine.XR.Interaction.Toolkit.ActionBasedController,
-    Unity.XR.Interaction.Toolkit
+  m_EditorClassIdentifier: 
   m_UpdateTrackingType: 0
   m_EnableInputTracking: 1
   m_EnableInputActions: 1
@@ -141,8 +138,7 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: 4715436822718277786, guid: a7b3d28b346833f4ea10936be7a9f18c,
-      type: 3}
+    m_Reference: {fileID: 4715436822718277786, guid: a7b3d28b346833f4ea10936be7a9f18c, type: 3}
   m_RotationAction:
     m_UseReference: 0
     m_Action:
@@ -154,20 +150,7 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: -3730266099773404857, guid: a7b3d28b346833f4ea10936be7a9f18c,
-      type: 3}
-  m_IsTrackedAction:
-    m_UseReference: 0
-    m_Action:
-      m_Name: 
-      m_Type: 1
-      m_ExpectedControlType: 
-      m_Id: 
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 1
-    m_Reference: {fileID: 0}
+    m_Reference: {fileID: -3730266099773404857, guid: a7b3d28b346833f4ea10936be7a9f18c, type: 3}
   m_TrackingStateAction:
     m_UseReference: 0
     m_Action:
@@ -179,8 +162,7 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: -4937915811870281583, guid: a7b3d28b346833f4ea10936be7a9f18c,
-      type: 3}
+    m_Reference: {fileID: -4937915811870281583, guid: a7b3d28b346833f4ea10936be7a9f18c, type: 3}
   m_SelectAction:
     m_UseReference: 1
     m_Action:
@@ -192,8 +174,7 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: 716709262026818769, guid: a7b3d28b346833f4ea10936be7a9f18c,
-      type: 3}
+    m_Reference: {fileID: 716709262026818769, guid: a7b3d28b346833f4ea10936be7a9f18c, type: 3}
   m_SelectActionValue:
     m_UseReference: 0
     m_Action:
@@ -217,8 +198,7 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: 716709262026818769, guid: a7b3d28b346833f4ea10936be7a9f18c,
-      type: 3}
+    m_Reference: {fileID: 716709262026818769, guid: a7b3d28b346833f4ea10936be7a9f18c, type: 3}
   m_ActivateActionValue:
     m_UseReference: 0
     m_Action:
@@ -242,8 +222,7 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 1
-    m_Reference: {fileID: 716709262026818769, guid: a7b3d28b346833f4ea10936be7a9f18c,
-      type: 3}
+    m_Reference: {fileID: 716709262026818769, guid: a7b3d28b346833f4ea10936be7a9f18c, type: 3}
   m_UIPressActionValue:
     m_UseReference: 0
     m_Action:
@@ -255,20 +234,7 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: -6123989868226725569, guid: a7b3d28b346833f4ea10936be7a9f18c,
-      type: 3}
-  m_UIScrollAction:
-    m_UseReference: 0
-    m_Action:
-      m_Name: 
-      m_Type: 0
-      m_ExpectedControlType: Vector2
-      m_Id: 
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 0}
+    m_Reference: {fileID: -6123989868226725569, guid: a7b3d28b346833f4ea10936be7a9f18c, type: 3}
   m_HapticDeviceAction:
     m_UseReference: 1
     m_Action:
@@ -280,8 +246,7 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: 716709262026818769, guid: a7b3d28b346833f4ea10936be7a9f18c,
-      type: 3}
+    m_Reference: {fileID: 716709262026818769, guid: a7b3d28b346833f4ea10936be7a9f18c, type: 3}
   m_RotateAnchorAction:
     m_UseReference: 1
     m_Action:
@@ -301,8 +266,7 @@ MonoBehaviour:
         m_Action: Rotate Anchor
         m_Flags: 0
       m_Flags: 0
-    m_Reference: {fileID: 5544746641166235747, guid: a7b3d28b346833f4ea10936be7a9f18c,
-      type: 3}
+    m_Reference: {fileID: 5544746641166235747, guid: a7b3d28b346833f4ea10936be7a9f18c, type: 3}
   m_DirectionalAnchorRotationAction:
     m_UseReference: 0
     m_Action:
@@ -334,8 +298,7 @@ MonoBehaviour:
         m_Action: Translate Anchor
         m_Flags: 0
       m_Flags: 0
-    m_Reference: {fileID: 5544746641166235747, guid: a7b3d28b346833f4ea10936be7a9f18c,
-      type: 3}
+    m_Reference: {fileID: 5544746641166235747, guid: a7b3d28b346833f4ea10936be7a9f18c, type: 3}
   m_ButtonPressPoint: 0.5
 --- !u!114 &5589497132288526105
 MonoBehaviour:
@@ -348,7 +311,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6803edce0201f574f923fd9d10e5b30a, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: UnityEngine.XR.Interaction.Toolkit.XRRayInteractor, Unity.XR.Interaction.Toolkit
+  m_EditorClassIdentifier: 
   m_InteractionManager: {fileID: 0}
   m_InteractionLayerMask:
     serializedVersion: 2
@@ -586,8 +549,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e988983f96fe1dd48800bcdfc82f23e9, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: UnityEngine.XR.Interaction.Toolkit.XRInteractorLineVisual,
-    Unity.XR.Interaction.Toolkit
+  m_EditorClassIdentifier: 
   m_LineWidth: 0.02
   m_OverrideInteractorLineLength: 1
   m_LineLength: 10
@@ -772,7 +734,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e0cb9aa70a22847b5925ee5f067c10a9, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Unity.XR.CoreUtils.XROrigin, Unity.XR.CoreUtils
+  m_EditorClassIdentifier: 
   m_Camera: {fileID: 5609791579423962305}
   m_OriginBaseGameObject: {fileID: 5589497133593145652}
   m_CameraFloorOffsetObject: {fileID: 5589497132891496769}
@@ -825,7 +787,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c2fadf230d1919748a9aa21d40f74619, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: UnityEngine.InputSystem.XR.TrackedPoseDriver, Unity.InputSystem
+  m_EditorClassIdentifier: 
   m_TrackingType: 0
   m_UpdateType: 0
   m_IgnoreTrackingState: 0
@@ -840,8 +802,7 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: -2353999202519565437, guid: a7b3d28b346833f4ea10936be7a9f18c,
-      type: 3}
+    m_Reference: {fileID: -2353999202519565437, guid: a7b3d28b346833f4ea10936be7a9f18c, type: 3}
   m_RotationInput:
     m_UseReference: 1
     m_Action:
@@ -853,8 +814,7 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: -4607609863168903279, guid: a7b3d28b346833f4ea10936be7a9f18c,
-      type: 3}
+    m_Reference: {fileID: -4607609863168903279, guid: a7b3d28b346833f4ea10936be7a9f18c, type: 3}
   m_TrackingStateInput:
     m_UseReference: 0
     m_Action:
@@ -897,8 +857,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: caff514de9b15ad48ab85dcff5508221, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: UnityEngine.XR.Interaction.Toolkit.ActionBasedController,
-    Unity.XR.Interaction.Toolkit
+  m_EditorClassIdentifier: 
   m_UpdateTrackingType: 0
   m_EnableInputTracking: 1
   m_EnableInputActions: 1
@@ -919,8 +878,7 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: -2353999202519565437, guid: a7b3d28b346833f4ea10936be7a9f18c,
-      type: 3}
+    m_Reference: {fileID: -2353999202519565437, guid: a7b3d28b346833f4ea10936be7a9f18c, type: 3}
   m_RotationAction:
     m_UseReference: 0
     m_Action:
@@ -932,20 +890,7 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: -4607609863168903279, guid: a7b3d28b346833f4ea10936be7a9f18c,
-      type: 3}
-  m_IsTrackedAction:
-    m_UseReference: 0
-    m_Action:
-      m_Name: 
-      m_Type: 1
-      m_ExpectedControlType: 
-      m_Id: 
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 1
-    m_Reference: {fileID: 0}
+    m_Reference: {fileID: -4607609863168903279, guid: a7b3d28b346833f4ea10936be7a9f18c, type: 3}
   m_TrackingStateAction:
     m_UseReference: 0
     m_Action:
@@ -1102,7 +1047,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6803edce0201f574f923fd9d10e5b30a, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: UnityEngine.XR.Interaction.Toolkit.XRRayInteractor, Unity.XR.Interaction.Toolkit
+  m_EditorClassIdentifier: 
   m_InteractionManager: {fileID: 0}
   m_InteractionLayerMask:
     serializedVersion: 2
@@ -1340,8 +1285,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e988983f96fe1dd48800bcdfc82f23e9, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: UnityEngine.XR.Interaction.Toolkit.XRInteractorLineVisual,
-    Unity.XR.Interaction.Toolkit
+  m_EditorClassIdentifier: 
   m_LineWidth: 0.02
   m_OverrideInteractorLineLength: 1
   m_LineLength: 10
@@ -1524,8 +1468,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: caff514de9b15ad48ab85dcff5508221, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: UnityEngine.XR.Interaction.Toolkit.ActionBasedController,
-    Unity.XR.Interaction.Toolkit
+  m_EditorClassIdentifier: 
   m_UpdateTrackingType: 0
   m_EnableInputTracking: 1
   m_EnableInputActions: 1
@@ -1554,8 +1497,7 @@ MonoBehaviour:
         m_Action: Position
         m_Flags: 0
       m_Flags: 0
-    m_Reference: {fileID: 3736007580099224278, guid: a7b3d28b346833f4ea10936be7a9f18c,
-      type: 3}
+    m_Reference: {fileID: 3736007580099224278, guid: a7b3d28b346833f4ea10936be7a9f18c, type: 3}
   m_RotationAction:
     m_UseReference: 0
     m_Action:
@@ -1575,20 +1517,7 @@ MonoBehaviour:
         m_Action: Rotation
         m_Flags: 0
       m_Flags: 0
-    m_Reference: {fileID: 3736007580099224278, guid: a7b3d28b346833f4ea10936be7a9f18c,
-      type: 3}
-  m_IsTrackedAction:
-    m_UseReference: 0
-    m_Action:
-      m_Name: 
-      m_Type: 1
-      m_ExpectedControlType: 
-      m_Id: 
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 1
-    m_Reference: {fileID: 0}
+    m_Reference: {fileID: 3736007580099224278, guid: a7b3d28b346833f4ea10936be7a9f18c, type: 3}
   m_TrackingStateAction:
     m_UseReference: 0
     m_Action:
@@ -1745,7 +1674,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6803edce0201f574f923fd9d10e5b30a, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: UnityEngine.XR.Interaction.Toolkit.XRRayInteractor, Unity.XR.Interaction.Toolkit
+  m_EditorClassIdentifier: 
   m_InteractionManager: {fileID: 0}
   m_InteractionLayerMask:
     serializedVersion: 2
@@ -1983,8 +1912,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e988983f96fe1dd48800bcdfc82f23e9, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: UnityEngine.XR.Interaction.Toolkit.XRInteractorLineVisual,
-    Unity.XR.Interaction.Toolkit
+  m_EditorClassIdentifier: 
   m_LineWidth: 0.02
   m_OverrideInteractorLineLength: 1
   m_LineLength: 10
@@ -2155,6 +2083,7 @@ Transform:
   m_Children:
   - {fileID: 5589497132891496770}
   m_Father: {fileID: 0}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5589497133593145654
 MonoBehaviour:
@@ -2167,7 +2096,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3859a92a05d4f5d418cb6ca605290e74, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: UnityEngine.XR.ARFoundation.ARSession, Unity.XR.ARFoundation
+  m_EditorClassIdentifier: 
   m_AttemptUpdate: 1
   m_MatchFrameRate: 1
   m_TrackingMode: 2
@@ -2182,7 +2111,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fa850fbd5b8aded44846f96e35f1a9f5, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: UnityEngine.XR.ARFoundation.ARInputManager, Unity.XR.ARFoundation
+  m_EditorClassIdentifier: 
 --- !u!114 &479116178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2194,8 +2123,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 017c5e3933235514c9520e1dace2a4b2, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: UnityEngine.XR.Interaction.Toolkit.Inputs.InputActionManager,
-    Unity.XR.Interaction.Toolkit
+  m_EditorClassIdentifier: 
   m_ActionAssets:
   - {fileID: -944628639613478452, guid: a7b3d28b346833f4ea10936be7a9f18c, type: 3}
 --- !u!1 &5589497134372387911
@@ -2245,7 +2173,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c2fadf230d1919748a9aa21d40f74619, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: UnityEngine.InputSystem.XR.TrackedPoseDriver, Unity.InputSystem
+  m_EditorClassIdentifier: 
   m_TrackingType: 0
   m_UpdateType: 0
   m_IgnoreTrackingState: 0
@@ -2260,8 +2188,7 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: -4319516118568744573, guid: a7b3d28b346833f4ea10936be7a9f18c,
-      type: 3}
+    m_Reference: {fileID: -4319516118568744573, guid: a7b3d28b346833f4ea10936be7a9f18c, type: 3}
   m_RotationInput:
     m_UseReference: 1
     m_Action:
@@ -2273,8 +2200,7 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: 601750489641515592, guid: a7b3d28b346833f4ea10936be7a9f18c,
-      type: 3}
+    m_Reference: {fileID: 601750489641515592, guid: a7b3d28b346833f4ea10936be7a9f18c, type: 3}
   m_TrackingStateInput:
     m_UseReference: 0
     m_Action:
@@ -2317,8 +2243,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: caff514de9b15ad48ab85dcff5508221, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: UnityEngine.XR.Interaction.Toolkit.ActionBasedController,
-    Unity.XR.Interaction.Toolkit
+  m_EditorClassIdentifier: 
   m_UpdateTrackingType: 0
   m_EnableInputTracking: 1
   m_EnableInputActions: 1
@@ -2339,8 +2264,7 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: -2353999202519565437, guid: a7b3d28b346833f4ea10936be7a9f18c,
-      type: 3}
+    m_Reference: {fileID: -2353999202519565437, guid: a7b3d28b346833f4ea10936be7a9f18c, type: 3}
   m_RotationAction:
     m_UseReference: 0
     m_Action:
@@ -2352,20 +2276,7 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: -4607609863168903279, guid: a7b3d28b346833f4ea10936be7a9f18c,
-      type: 3}
-  m_IsTrackedAction:
-    m_UseReference: 0
-    m_Action:
-      m_Name: 
-      m_Type: 1
-      m_ExpectedControlType: 
-      m_Id: 
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 1
-    m_Reference: {fileID: 0}
+    m_Reference: {fileID: -4607609863168903279, guid: a7b3d28b346833f4ea10936be7a9f18c, type: 3}
   m_TrackingStateAction:
     m_UseReference: 0
     m_Action:
@@ -2522,7 +2433,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6803edce0201f574f923fd9d10e5b30a, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: UnityEngine.XR.Interaction.Toolkit.XRRayInteractor, Unity.XR.Interaction.Toolkit
+  m_EditorClassIdentifier: 
   m_InteractionManager: {fileID: 0}
   m_InteractionLayerMask:
     serializedVersion: 2
@@ -2760,8 +2671,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e988983f96fe1dd48800bcdfc82f23e9, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: UnityEngine.XR.Interaction.Toolkit.XRInteractorLineVisual,
-    Unity.XR.Interaction.Toolkit
+  m_EditorClassIdentifier: 
   m_LineWidth: 0.02
   m_OverrideInteractorLineLength: 1
   m_LineLength: 10
@@ -2954,38 +2864,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3771369551179688024, guid: 24158fb1437dc8e418d893939758764d,
-        type: 3}
-      propertyPath: m_PositionInput.m_Action.m_Id
-      value: 
+    - target: {fileID: 3771369551179688024, guid: 24158fb1437dc8e418d893939758764d, type: 3}
+      propertyPath: m_TrackingStateInput.m_Action.m_Id
+      value: c00e567b-92b6-4923-bc16-16d036db8358
       objectReference: {fileID: 0}
-    - target: {fileID: 3771369551179688024, guid: 24158fb1437dc8e418d893939758764d,
-        type: 3}
-      propertyPath: m_RotationInput.m_Action.m_Id
-      value: 
+    - target: {fileID: 3771369551179688024, guid: 24158fb1437dc8e418d893939758764d, type: 3}
+      propertyPath: m_TrackingStateInput.m_Action.m_Name
+      value: Tracking State Input
       objectReference: {fileID: 0}
-    - target: {fileID: 3771369551179688024, guid: 24158fb1437dc8e418d893939758764d,
-        type: 3}
-      propertyPath: m_PositionInput.m_Action.m_Name
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3771369551179688024, guid: 24158fb1437dc8e418d893939758764d,
-        type: 3}
-      propertyPath: m_RotationInput.m_Action.m_Name
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3771369551179688024, guid: 24158fb1437dc8e418d893939758764d,
-        type: 3}
-      propertyPath: m_PositionInput.m_Action.m_SingletonActionBindings.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3771369551179688024, guid: 24158fb1437dc8e418d893939758764d,
-        type: 3}
-      propertyPath: m_RotationInput.m_Action.m_SingletonActionBindings.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5850404675360181103, guid: 24158fb1437dc8e418d893939758764d,
-        type: 3}
+    - target: {fileID: 5850404675360181103, guid: 24158fb1437dc8e418d893939758764d, type: 3}
       propertyPath: recenterXROriginAtStart
       value: 0
       objectReference: {fileID: 0}
@@ -2997,13 +2884,11 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 24158fb1437dc8e418d893939758764d, type: 3}
 --- !u!4 &5593219067060734525 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 4214550324010282, guid: 24158fb1437dc8e418d893939758764d,
-    type: 3}
+  m_CorrespondingSourceObject: {fileID: 4214550324010282, guid: 24158fb1437dc8e418d893939758764d, type: 3}
   m_PrefabInstance: {fileID: 5589497132469688087}
   m_PrefabAsset: {fileID: 0}
 --- !u!20 &5609791579423962305 stripped
 Camera:
-  m_CorrespondingSourceObject: {fileID: 20294507499185110, guid: 24158fb1437dc8e418d893939758764d,
-    type: 3}
+  m_CorrespondingSourceObject: {fileID: 20294507499185110, guid: 24158fb1437dc8e418d893939758764d, type: 3}
   m_PrefabInstance: {fileID: 5589497132469688087}
   m_PrefabAsset: {fileID: 0}

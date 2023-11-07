@@ -1,4 +1,3 @@
-
 #if XR_HANDS
 using System.Collections.Generic;
 using Unity.Collections;

@@ -70,7 +70,7 @@ namespace UnityEditor.XR.MagicLeap
                 {
                     if (!string.IsNullOrEmpty(labdriverResultPath))
                     {
-                        SessionState.SetString(LabdriverFoundBackendPath, labdriverResultPath);
+                        EditorPrefs.SetString(LabdriverFoundBackendPath, labdriverResultPath);
                         if (ziRuntimePath != labdriverResultPath)
                         {
                             ziRuntimePath = labdriverResultPath;
@@ -318,6 +318,7 @@ namespace UnityEditor.XR.MagicLeap
 
         private static string GetSavedSDKPath()
         {
+
             var path = EditorPrefs.GetString(SdkPathEditorPrefsKey, "");
             if (!string.IsNullOrEmpty(path))
             {
@@ -330,7 +331,10 @@ namespace UnityEditor.XR.MagicLeap
 
         private static void SaveNewSDKPath(string path)
         {
-            SessionState.EraseString(LabdriverFoundBackendPath);
+            // SDK path is changed. Clear these two.
+            EditorPrefs.DeleteKey(LabdriverFoundBackendPath);
+            SessionState.EraseString(AppSimShimLibSupport.SessionStateKey_ZISearchPaths);
+
             EditorPrefs.SetString(SdkPathEditorPrefsKey, path);
             mlsdkPath = path;
             if (!ziPathOverrideToggle.value)
@@ -348,17 +352,18 @@ namespace UnityEditor.XR.MagicLeap
 
         private static void LocateZIRuntimeFromMLSDK()
         {
-            var path = SessionState.GetString(LabdriverFoundBackendPath, "");
-            if(Directory.Exists(path))
+            var path = EditorPrefs.GetString(LabdriverFoundBackendPath, "");
+            if (Directory.Exists(path)) // Use the stored path if valid so we don't need to invoke Labdriver any more.
             {
                 if (path != ziRuntimePath)
                 {
                     ziRuntimePath = path;
                     ZIRuntimePathChangeEvt?.Invoke(ziRuntimePath);
                 }
+                return;
             }
 
-            if(string.IsNullOrEmpty(ziRuntimePath) || !Directory.Exists(ziRuntimePath))
+            if (string.IsNullOrEmpty(ziRuntimePath) || !Directory.Exists(ziRuntimePath))
             {
                 if(mlsdkPath.EndsWith("LAYOUT"))
                 {
